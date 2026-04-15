@@ -107,7 +107,19 @@
     .tag-today    { background: #fef3e2; color: var(--orange); }
     .tag-past     { background: #f0f0f0; color: #999; }
     .tag-followup { background: #fff0f0; color: var(--accent); }
+    .tag-pending  { background: #fff8e1; color: #e65100; }
     .expense-val  { font-weight: 700; color: var(--primary-dark); }
+
+    /* ── Pending / To-Do card ── */
+    .pending-todo-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 12px; overflow: hidden; border-left: 4px solid #ffb300; }
+    .pending-todo-hdr  { background: linear-gradient(135deg,#e65100,#ff8f00); color: white; padding: 11px 16px; display: flex; justify-content: space-between; align-items: center; }
+    .pending-todo-hdr-title { font-size: 14px; font-weight: 700; }
+    .pending-todo-item { display: flex; align-items: center; padding: 11px 14px; border-bottom: 1px solid #fff3e0; gap: 10px; }
+    .pending-todo-item:last-child { border-bottom: none; }
+    .pending-dot { width: 10px; height: 10px; border-radius: 50%; background: #ffb300; flex-shrink: 0; }
+    .pending-todo-info { flex: 1; min-width: 0; }
+    .pending-todo-spec { font-size: 14px; font-weight: 700; color: var(--text); }
+    .pending-todo-sub  { font-size: 12px; color: var(--text-light); margin-top: 2px; }
 
     /* Attachment badge */
     .att-badge { display: inline-flex; align-items: center; gap: 5px; background: #e3edf7; color: var(--primary-dark); border: none; border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 600; cursor: pointer; margin-top: 8px; font-family: inherit; }
@@ -296,12 +308,20 @@
       <input type="hidden" id="edit-id" value="" />
 
       <div class="form-group">
-        <label class="form-label">📅 日期 Date <span class="required">*</span></label>
+        <label class="form-label">⏳ 預約狀態 Status</label>
+        <select id="f-status" class="form-control" onchange="toggleDateRequired()">
+          <option value="confirmed">✅ 已確認 Confirmed</option>
+          <option value="pending">⏳ 待確認 Pending — 等待醫院/診所回覆日期</option>
+        </select>
+      </div>
+
+      <div id="date-group" class="form-group">
+        <label class="form-label">📅 日期 Date <span class="required" id="date-required-star">*</span></label>
         <div style="display:flex;gap:8px">
           <input type="date" id="f-date" class="form-control" required style="flex:1" />
           <input type="time" id="f-time" class="form-control" style="flex:0 0 120px" placeholder="HH:MM" />
         </div>
-        <div class="form-hint">時間可選填 Time is optional</div>
+        <div class="form-hint" id="date-hint">時間可選填 Time is optional</div>
       </div>
 
       <div class="form-group">
@@ -664,8 +684,20 @@ function clearForm() {
   document.getElementById('exist-att-list').innerHTML = '';
   document.getElementById('pending-list').innerHTML = '';
   pendingFiles = []; existingAttsToRemove = [];
+  document.getElementById('f-status').value = 'confirmed';
+  toggleDateRequired();
   document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
   document.getElementById('f-time').value = '';
+}
+function toggleDateRequired() {
+  const isPending = document.getElementById('f-status').value === 'pending';
+  const dateInput = document.getElementById('f-date');
+  dateInput.required = !isPending;
+  document.getElementById('date-required-star').style.display = isPending ? 'none' : '';
+  document.getElementById('date-hint').textContent = isPending
+    ? '待確認狀態下日期可留空 Date optional for pending'
+    : '時間可選填 Time is optional';
+  if (isPending) dateInput.value = '';
 }
 
 async function saveRecord(e) {
@@ -675,6 +707,7 @@ async function saveRecord(e) {
   const locOther = document.getElementById('f-location-other').value;
   const record = {
     id: id || Date.now().toString(),
+    status:   document.getElementById('f-status').value,
     date:     document.getElementById('f-date').value,
     time:     document.getElementById('f-time').value,
     location: loc === 'other' ? (locOther || '其他') : loc,
@@ -717,7 +750,9 @@ async function editRecord(id) {
   const knownLocs = ['屯門醫院日間醫療中心', '私家診所'];
   const locKey = knownLocs.includes(r.location) ? r.location : 'other';
   document.getElementById('edit-id').value = r.id;
-  document.getElementById('f-date').value = r.date;
+  document.getElementById('f-status').value = r.status || 'confirmed';
+  toggleDateRequired();
+  document.getElementById('f-date').value = r.date || '';
   document.getElementById('f-time').value = r.time || '';
   document.getElementById('f-location').value = locKey;
   if (locKey === 'other') {
@@ -757,6 +792,7 @@ async function confirmDelete() {
 
 // ── Render ────────────────────────────────────────────────────────────────
 function renderRecordCard(r) {
+  if (r.status === 'pending') return renderPendingCard(r);
   const st = statusInfo(r.date);
   const loc   = firstLine(r.location);
   const doc   = firstLine(r.doctor);
@@ -786,6 +822,7 @@ function renderRecordCard(r) {
       <div class="record-actions">
         <button class="btn btn-edit btn-sm" onclick="viewFull('${r.id}')">🔍 詳情</button>
         <button class="btn btn-edit btn-sm" onclick="editRecord('${r.id}')">✏️ 編輯</button>
+        ${r.date ? `<button class="btn btn-sm" style="background:#e8f5e9;color:#2e7d32" onclick="addToDeviceCalendar('${r.id}')">📅 加入日曆</button>` : ''}
         <button class="btn btn-danger btn-sm" onclick="promptDelete('${r.id}')">🗑️ 刪除</button>
       </div>
     </div>
@@ -828,15 +865,66 @@ function build4WeekSummary(appts) {
   return `<div class="summary-card"><div class="summary-hdr"><span class="summary-hdr-title">📅 未來4週預約</span><span class="summary-hdr-count">共${appts.length}個</span></div>${items}</div>`;
 }
 
+function renderPendingCard(r) {
+  const spec = firstLine(r.specialist); const doc = firstLine(r.doctor); const loc = firstLine(r.location);
+  return `<div class="pending-todo-card">
+    <div class="record-header">
+      <div class="record-date-wrap">
+        <div class="record-date" style="color:#e65100">⏳ 待確認日期</div>
+        <div class="record-specialist">${spec}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        <span class="tag tag-pending">待回覆</span>
+        ${r.followup==='yes'?'<span class="tag tag-followup">🔔 需跟進</span>':''}
+      </div>
+    </div>
+    <div class="record-body">
+      ${loc ? `<div class="record-row"><span class="record-label">🏥 地點</span><span class="record-value">${loc}</span></div>` : ''}
+      ${doc ? `<div class="record-row"><span class="record-label">🩺 醫生</span><span class="record-value">${doc}</span></div>` : ''}
+      ${r.notes ? `<div class="record-row"><span class="record-label">📝 備註</span><span class="record-value">${firstLine(r.notes)}</span></div>` : ''}
+      <div class="divider"></div>
+      <div class="record-actions">
+        <button class="btn btn-edit btn-sm" onclick="viewFull('${r.id}')">🔍 詳情</button>
+        <button class="btn btn-sm" style="background:#fff8e1;color:#e65100;border:1.5px solid #ffb300" onclick="editRecord('${r.id}')">📅 確認日期</button>
+        <button class="btn btn-danger btn-sm" onclick="promptDelete('${r.id}')">🗑️ 刪除</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildPendingSection(pending) {
+  if (pending.length === 0) return '';
+  const items = pending.map(r => {
+    const spec = firstLine(r.specialist).split(' - ')[0];
+    const sub  = [firstLine(r.doctor), firstLine(r.location)].filter(Boolean).join(' · ');
+    return `<div class="pending-todo-item">
+      <div class="pending-dot"></div>
+      <div class="pending-todo-info">
+        <div class="pending-todo-spec">${spec || '新轉介'}</div>
+        ${sub ? `<div class="pending-todo-sub">${sub}</div>` : ''}
+      </div>
+      <button class="btn btn-sm" style="background:#fff8e1;color:#e65100;font-size:11px;padding:4px 9px" onclick="editRecord('${r.id}')">📅 填入日期</button>
+    </div>`;
+  }).join('');
+  return `<div class="pending-todo-card" style="border-left-color:#ffb300">
+    <div class="pending-todo-hdr">
+      <span class="pending-todo-hdr-title">⏳ 待確認預約 To-Do（${pending.length}）</span>
+    </div>
+    ${items}
+  </div>`;
+}
+
 function renderUpcoming() {
   const records = getRecords();
   const today = new Date(); today.setHours(0,0,0,0);
   const in28  = new Date(today); in28.setDate(today.getDate() + 28);
-  const allUp  = records.filter(r => new Date(r.date+'T00:00:00') >= today).sort((a,b) => a.date.localeCompare(b.date));
+  const pending = records.filter(r => r.status === 'pending');
+  const allUp  = records.filter(r => r.status !== 'pending' && r.date && new Date(r.date+'T00:00:00') >= today).sort((a,b) => a.date.localeCompare(b.date));
   const next4w = allUp.filter(r => new Date(r.date+'T00:00:00') <= in28);
-  const pastR  = records.filter(r => new Date(r.date+'T00:00:00') < today).sort((a,b) => b.date.localeCompare(a.date)).slice(0,3);
+  const pastR  = records.filter(r => r.status !== 'pending' && r.date && new Date(r.date+'T00:00:00') < today).sort((a,b) => b.date.localeCompare(a.date)).slice(0,3);
 
-  let html = build4WeekSummary(next4w);
+  let html = buildPendingSection(pending);
+  html += build4WeekSummary(next4w);
   if (allUp.length > 0) {
     html += `<div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0 10px">
       <div class="section-title" style="margin:0">所有即將預約（${allUp.length}）</div>
@@ -876,7 +964,9 @@ function renderRecords(filter = 'all') {
 
 function updateBadge() {
   const today = new Date(); today.setHours(0,0,0,0);
-  const n = getRecords().filter(r => new Date(r.date+'T00:00:00') >= today).length;
+  const upcoming = getRecords().filter(r => r.status !== 'pending' && r.date && new Date(r.date+'T00:00:00') >= today).length;
+  const pending  = getRecords().filter(r => r.status === 'pending').length;
+  const n = upcoming + pending;
   const b = document.getElementById('nav-badge');
   b.style.display = n > 0 ? 'block' : 'none';
   b.textContent = n;
@@ -1083,6 +1173,48 @@ function _checkPin() {
     document.getElementById('pin-error').textContent = '密碼錯誤，請再試 Wrong PIN';
     setTimeout(() => { _pe = ''; _updateDots(); dots.classList.remove('shake'); }, 900);
   }
+}
+
+// ── Add to Device Calendar (ICS) ─────────────────────────────────────────
+function addToDeviceCalendar(id) {
+  const r = getRecords().find(x => x.id === id);
+  if (!r || !r.date) { showToast('⚠️ 請先確認日期才能加入日曆'); return; }
+  const pad = n => String(n).padStart(2,'0');
+  const dateFlat = r.date.replace(/-/g,'');
+  let dtStart, dtEnd;
+  if (r.time) {
+    const [h, m] = r.time.split(':').map(Number);
+    dtStart = `${dateFlat}T${pad(h)}${pad(m)}00`;
+    dtEnd   = `${dateFlat}T${pad(h+1)}${pad(m)}00`;
+  } else {
+    const d = new Date(r.date + 'T00:00:00');
+    const next = new Date(d); next.setDate(d.getDate()+1);
+    dtStart = `${dateFlat}`;
+    dtEnd   = `${next.getFullYear()}${pad(next.getMonth()+1)}${pad(next.getDate())}`;
+  }
+  const isAllDay = !r.time;
+  const summary  = [firstLine(r.specialist), firstLine(r.doctor)].filter(Boolean).join(' · ') || '醫療預約';
+  const location = firstLine(r.location) || '';
+  const desc     = [
+    r.specialist ? '專科: ' + firstLine(r.specialist) : '',
+    r.doctor     ? '醫生: ' + firstLine(r.doctor)     : '',
+    r.followupDetail ? '跟進: ' + firstLine(r.followupDetail) : '',
+  ].filter(Boolean).join('\\n');
+  const lines = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//媽媽健康記錄//EN','CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT',
+    `UID:${r.id}@mamas-health`,
+    isAllDay ? `DTSTART;VALUE=DATE:${dtStart}` : `DTSTART:${dtStart}`,
+    isAllDay ? `DTEND;VALUE=DATE:${dtEnd}`     : `DTEND:${dtEnd}`,
+    `SUMMARY:${summary}`,
+    location ? `LOCATION:${location}` : '',
+    desc     ? `DESCRIPTION:${desc}`  : '',
+    'END:VEVENT','END:VCALENDAR'
+  ].filter(Boolean).join('\r\n');
+  const blob = new Blob([lines], { type: 'text/calendar;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = `appt_${r.date}.ics`; a.click();
+  showToast('📅 已下載，請開啟加入日曆');
 }
 
 // ── Calendar ──────────────────────────────────────────────────────────────
