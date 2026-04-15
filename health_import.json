@@ -179,7 +179,8 @@
     "followup": "yes",
     "followupDetail": "1. Await pituitary hormone blood results — for Endocrinology / Neurosurgery review.\n2. TMH Cardiothoracic Surgery to monitor post-op recovery: wound, respiratory function, CXR, pathology.\n3. ⚠️ Next scheduled follow-up: CXR + Cardiothoracic Surgery OPD — 10/08/2026.\n4. CT Scan (HA/Government) — date TBD; to be confirmed by TMH.\n5. Await final surgical pathology report for treatment planning.\n\n中文：1. 等候腦下垂體荷爾蒙血液檢查結果，供內分泌科及神經外科覆診審閱。\n2. 屯門醫院胸肺外科持續監察術後康復：傷口、呼吸功能、胸部X光及手術病理報告。\n3. ⚠️ 下次預約覆診：胸部X光 + 胸肺外科覆診——2026年8月10日。\n4. 政府（醫管局）CT掃描——日期待定，由屯門醫院安排確認。\n5. 等候最終手術病理報告後，制定後續治療方案。",
     "notes": "Document Type: Blood Tests — 內分泌科 & 腦外科 (8:30am)\n+ New Patient Consultation — 胸肺外科 新症 (2:30pm) | Ref: —",
-    "createdAt": "2026-04-14T00:00:00.000Z"
+    "createdAt": "2026-04-14T00:00:00.000Z",
+    "time": "08:30"
   },
   {
     "id": "import_15",
@@ -192,7 +193,8 @@
     "followup": "yes",
     "followupDetail": "1. Monitor wound healing — check for infection, dehiscence, or seroma.\n2. Confirm attendance for 20/04/2026 OPD follow-up appointments.\n\n中文：1. 監察傷口癒合——留意有無感染、裂開或積液。\n2. 確認出席2026年4月20日門診覆診預約。",
     "notes": "Document Type: Post-op Wound Care — 洗傷口\n術後傷口護理 | Ref: —",
-    "createdAt": "2026-04-14T00:00:00.000Z"
+    "createdAt": "2026-04-14T00:00:00.000Z",
+    "time": "15:00"
   },
   {
     "id": "import_16",
@@ -205,7 +207,8 @@
     "followup": "yes",
     "followupDetail": "1. Review surgical pathology report — LUL specimen + lymph node TTF/IHC status (if received).\n2. Assess respiratory function and wound healing.\n3. Plan surveillance or adjuvant therapy based on pathology staging.\n\n中文：1. 審閱手術病理報告——左上肺葉標本及淋巴結TTF/IHC結果（如已收到）。\n2. 評估呼吸功能及傷口癒合。\n3. 根據病理分期制定監察或輔助治療方案。",
     "notes": "Document Type: Post-op OPD Follow-up — 2nd Visit\n術後門診覆診（手術後第2次） | Ref: —",
-    "createdAt": "2026-04-14T00:00:00.000Z"
+    "createdAt": "2026-04-14T00:00:00.000Z",
+    "time": "10:00"
   },
   {
     "id": "import_17",
@@ -218,7 +221,8 @@
     "followup": "yes",
     "followupDetail": "1. Post-op review of recovery progress.\n2. Discuss outstanding test results and treatment planning.\n\n中文：1. 術後康復進度覆診。\n2. 討論待收檢查結果及後續治療計劃。",
     "notes": "Document Type: Post-op OPD Follow-up — 1st Visit\n術後門診覆診（手術後第1次） | Ref: —",
-    "createdAt": "2026-04-14T00:00:00.000Z"
+    "createdAt": "2026-04-14T00:00:00.000Z",
+    "time": "11:30"
   },
   {
     "id": "import_18",
@@ -231,7 +235,8 @@
     "followup": "yes",
     "followupDetail": "Review pending investigations and ongoing medical management (hypertension, pituitary macroadenoma assessment, post-op recovery).\n\n中文：複查待收檢查結果及持續內科跟進（高血壓控制、腦下垂體大腺瘤評估、術後康復）。",
     "notes": "Document Type: Internal Medicine OPD Follow-up\n內科門診覆診 | Ref: —",
-    "createdAt": "2026-04-14T00:00:00.000Z"
+    "createdAt": "2026-04-14T00:00:00.000Z",
+    "time": "14:30"
   },
   {
     "id": "import_19",
@@ -270,6 +275,7 @@
     "followup": "yes",
     "followupDetail": "1. Review CXR — assess post-lobectomy lung recovery and any new findings.\n2. Discuss CT scan scheduling (Government/HA) for further surveillance.\n3. Ongoing post-resection surveillance for lung adenocarcinoma.\n\n中文：1. 審閱胸部X光——評估術後肺部康復及有否新發現。\n2. 討論政府（醫管局）CT掃描安排，用作定期術後監察。\n3. 肺腺癌術後持續監察計劃。",
     "notes": "Document Type: CXR (Chest X-ray) at 11:30am\n+ Cardiothoracic Surgery OPD Follow-up at 2:45pm\n胸部X光（11:30）+ 胸肺外科覆診（14:45） | Ref: Arranged at\n13/04/2026\n胸肺外科 新症",
-    "createdAt": "2026-04-14T00:00:00.000Z"
+    "createdAt": "2026-04-14T00:00:00.000Z",
+    "time": "11:30"
   }
 ]

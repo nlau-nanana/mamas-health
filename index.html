@@ -1222,19 +1222,19 @@ function showDayAppts(dateStr) {
 // ── Init ──────────────────────────────────────────────────────────────────
 async function init() {
   await initIDB();
-  // Load Excel records if app is empty or only has sample data
-  const existing = getRecords();
-  const hasSamplesOnly = existing.length <= 2 && existing.every(r => r.id && r.id.startsWith('sample'));
-  if (existing.length === 0 || hasSamplesOnly) {
-    try {
-      const res = await fetch('health_import.json');
-      if (res.ok) {
-        const data = await res.json();
-        saveRecords(data);
-        showToast('✅ 已載入 ' + data.length + ' 條歷史記錄');
+  // Always fetch latest records from server so all family phones stay in sync.
+  // Locally-added records (not in the JSON) are preserved.
+  try {
+    const res = await fetch('health_import.json?v=' + Date.now());
+    if (res.ok) {
+      const fresh = await res.json();
+      if (Array.isArray(fresh) && fresh.length > 0) {
+        const freshIds = new Set(fresh.map(r => r.id));
+        const localOnly = getRecords().filter(r => !freshIds.has(r.id));
+        saveRecords([...fresh, ...localOnly]);
       }
-    } catch (err) { /* file not available, start empty */ }
-  }
+    }
+  } catch (err) { /* offline — use cached localStorage data */ }
   document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
   renderUpcoming();
   updateBadge();
