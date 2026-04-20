@@ -183,6 +183,34 @@
     "time": "08:30"
   },
   {
+    "id": "import_22",
+    "date": "2026-04-13",
+    "time": "14:30",
+    "location": "屯門醫院日間醫療中心",
+    "specialist": "胸肺外科 (Cardiothoracic Surgery)",
+    "doctor": "Dr. Wong Hong Yee 黃康怡醫生\n(Associate Consultant, Cardiothoracic Surgery\n心胸肺外科副顧問醫生)",
+    "expense": "",
+    "diagnosis": "2:30pm: New Patient Consultation — Cardiothoracic Surgery (胸肺外科新症)\nDr. Wong Hong Yee 黃康怡醫生 (Associate Consultant, TMH)\n\nPurpose: Post-lobectomy surveillance planning — 2cm LUL AdenoCA; RML 6mm lesion follow-up.\nArranged: CXR (Req TMHOR2608047905) + OPD follow-up on 10/08/2026 (WF-4).\n\n中文：下午2:30：胸肺外科新症覆診\n黃康怡醫生（屯門醫院副顧問醫生）\n目的：術後監察計劃——左上肺葉2厘米肺腺癌；右中肺葉6毫米病灶跟進。\n已安排：胸部X光（申請號TMHOR2608047905）+ 2026年8月10日門診覆診（WF-4）。",
+    "followup": "yes",
+    "followupDetail": "1. CXR arranged: Req TMHOR2608047905 (for review at 10/08/2026 OPD).\n2. Follow-up booked: 10/08/2026 — CXR 11:30am + Cardiothoracic Surgery OPD 2:45pm (WF-4).\n3. CT Scan (NTW Cluster Radiology) — to be separately arranged.\n\n中文：1. 已安排胸部X光（申請號TMHOR2608047905，於8月10日覆診時審閱）。\n2. 已預約跟進：2026年8月10日 — 胸部X光上午11:30 + 胸肺外科門診下午2:45（WF-4）。\n3. CT掃描（新界西醫院聯網）——另行安排，日期待定。",
+    "notes": "Document Type: New Patient Consultation — Cardiothoracic Surgery\n胸肺外科新症 | OPD No.: CTS-26-00332(3) | Receipt: R202658478669 | X-ray Req: TMHOR2608047905",
+    "createdAt": "2026-04-20T08:33:04.509151"
+  },
+  {
+    "id": "import_23",
+    "date": "2026-04-15",
+    "time": "",
+    "location": "楊連傑牙科診所\nYeung Lin Kit Dental Clinic",
+    "specialist": "牙科 (Dentistry)",
+    "doctor": "Dr. Yeung Lin Kit 楊連傑醫生\n(Dentist 牙醫)",
+    "expense": "1000",
+    "diagnosis": "Dental visit:\n(1) Scaling & polishing (洗牙) — HKD 500\n(2) Dental guard polishing (磨滑牙套) — HKD 500\nTotal: HKD 1,000\n\n中文：牙科覆診：\n(1) 洗牙（口腔潔牙）——港幣 $500\n(2) 磨滑牙套——港幣 $500\n合計費用：港幣 $1,000",
+    "followup": "no",
+    "followupDetail": "",
+    "notes": "Document Type: Dental Consultation\n牙科覆診",
+    "createdAt": "2026-04-20T08:33:04.509151"
+  },
+  {
     "id": "import_15",
     "date": "2026-04-16",
     "location": "Alliance Medical Centre 安匯醫務中心\n(Dr. Lo Cheuk Kin's Clinic)",
@@ -263,6 +291,34 @@
     "followupDetail": "Finalise pre/post-operative staging. Confirm further management plan. Discuss operative risks given hypertension and BMI 34.2. Coordinate MDT discussion if required.\n\n中文：完成術前/術後分期評估。確認後續治療方案。\n考慮高血壓及BMI 34.2的手術風險，進行討論。\n如有需要，安排多科聯合會診（MDT）。",
     "notes": "Document Type: Follow-up Appointment (Scheduled)\n覆診預約 | Ref: —",
     "createdAt": "2026-04-14T00:00:00.000Z"
+  },
+  {
+    "id": "import_24",
+    "date": "2026-05-27",
+    "time": "13:45",
+    "location": "屯門醫院日間醫療中心",
+    "specialist": "內分泌科 (Endocrinology)",
+    "doctor": "內分泌科專科醫生（待確認）\nEndocrinology Specialist (TBC)",
+    "expense": "",
+    "diagnosis": "1:45pm: Endocrinology OPD — follow-up for uterine issue.\nUterine fibroid at fundus (4.8×3.7cm) — incidental finding on PET-CT dated 24/03/2026.\n\n中文：下午1:45：內分泌科門診 — 跟進子宮問題。\n子宮底部肌瘤（4.8×3.7厘米）——於2026年3月24日PET-CT掃描中偶然發現。",
+    "followup": "yes",
+    "followupDetail": "Review and manage uterine condition from endocrinology perspective.\n\n中文：從內分泌科角度評估及跟進子宮狀況。",
+    "notes": "Document Type: Endocrinology OPD — Uterine Follow-up\n內分泌科門診 — 子宮問題跟進",
+    "createdAt": "2026-04-20T08:33:04.509151"
+  },
+  {
+    "id": "import_25",
+    "date": "2026-07-17",
+    "time": "14:30",
+    "location": "屯門醫院日間醫療中心",
+    "specialist": "腦外科 (Neurosurgery)",
+    "doctor": "腦外科專科醫生（待確認）\nNeurosurgery Specialist (TBC)",
+    "expense": "",
+    "diagnosis": "2:30pm: Neurosurgery OPD — assessment of pituitary macroadenoma extending to suprasellar cistern (found on MRI brain 24/03/2026).\nPituitary hormone panel (ACTH, IGF-1, Cortisol AM, Prolactin, TFT, RFT) completed 13/04/2026 (Req TMHOR2607242763) — results to be reviewed at this appointment.\n\n中文：下午2:30：腦外科門診 — 腦下垂體大腺瘤評估（延伸至鞍上池）。\n於2026年3月24日腦部磁力共振中發現。\n腦下垂體荷爾蒙血液檢查已於2026年4月13日完成（申請號TMHOR2607242763）——本次覆診將審閱結果。",
+    "followup": "yes",
+    "followupDetail": "1. Review pituitary hormone panel results (ACTH, IGF-1, Cortisol AM, Prolactin, TFT, RFT).\n2. Assess pituitary macroadenoma — determine if surgical intervention required.\n3. Monitor for symptoms: headache, visual disturbance, hormonal imbalance.\n\n中文：1. 審閱腦下垂體荷爾蒙血液檢查結果。\n2. 評估腦下垂體大腺瘤——決定是否需要手術介入。\n3. 監察相關症狀：頭痛、視力改變、荷爾蒙失調。",
+    "notes": "Document Type: Neurosurgery OPD — Pituitary Macroadenoma Assessment\n腦外科門診 — 腦下垂體大腺瘤評估 | Ref: Req TMHOR2607242763",
+    "createdAt": "2026-04-20T08:33:04.509151"
   },
   {
     "id": "import_21",
