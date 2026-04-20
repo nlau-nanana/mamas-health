@@ -791,7 +791,7 @@ async function confirmDelete() {
 }
 
 // ── Render ────────────────────────────────────────────────────────────────
-function renderRecordCard(r) {
+function renderRecordCard(r, num) {
   if (r.status === 'pending') return renderPendingCard(r);
   const st = statusInfo(r.date);
   const loc   = firstLine(r.location);
@@ -806,6 +806,7 @@ function renderRecordCard(r) {
         <div class="record-specialist">${spec}</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        ${num !== undefined ? `<span style="font-size:9px;font-weight:700;color:#c0c0c0;letter-spacing:0.3px">#${num}</span>` : ''}
         <span class="tag ${st.tag}">${st.text}</span>
         ${r.followup==='yes'?'<span class="tag tag-followup">🔔 需跟進</span>':''}
       </div>
@@ -933,21 +934,15 @@ function renderUpcoming() {
   const pending = records.filter(r => r.status === 'pending');
   const allUp  = records.filter(r => r.status !== 'pending' && r.date && new Date(r.date+'T00:00:00') >= today).sort((a,b) => a.date.localeCompare(b.date));
   const next4w = allUp.filter(r => new Date(r.date+'T00:00:00') <= in28);
-  const pastR  = records.filter(r => r.status !== 'pending' && r.date && new Date(r.date+'T00:00:00') < today).sort((a,b) => b.date.localeCompare(a.date)).slice(0,3);
-
   let html = buildPendingSection(pending);
   html += build4WeekSummary(next4w);
   if (allUp.length > 0) {
     html += `<div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0 10px">
       <div class="section-title" style="margin:0">所有即將預約（${allUp.length}）</div>
     </div>`;
-    allUp.forEach(r => { html += renderRecordCard(r); });
+    allUp.forEach((r, i) => { html += renderRecordCard(r, i + 1); });
   } else {
     html += `<div class="empty-state"><div class="icon">📅</div><p>暫無即將到來的預約<br>按「新增記錄」新增診症</p></div>`;
-  }
-  if (pastR.length > 0) {
-    html += `<div class="section-title">最近完成記錄</div>`;
-    pastR.forEach(r => { html += renderRecordCard(r); });
   }
   document.getElementById('upcoming-content').innerHTML = html;
   updateBadge();
@@ -970,7 +965,7 @@ function renderRecords(filter = 'all') {
   list = list.sort((a,b) => filter === 'past' ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date));
   const el = document.getElementById('records-content');
   if (list.length === 0) { el.innerHTML = `<div class="empty-state"><div class="icon">📋</div><p>沒有符合的記錄</p></div>`; return; }
-  el.innerHTML = list.map(r => renderRecordCard(r)).join('');
+  el.innerHTML = list.map((r, i) => renderRecordCard(r, i + 1)).join('');
   loadAttBadges();
 }
 
