@@ -798,7 +798,7 @@ function renderRecordCard(r) {
   const doc   = firstLine(r.doctor);
   const spec  = firstLine(r.specialist);
   const diagShort = r.diagnosis ? r.diagnosis.substring(0, 160) + (r.diagnosis.length > 160 ? '…' : '') : '';
-  return `<div class="record-card ${st.card}">
+  return `<div id="record-${r.id}" class="record-card ${st.card}">
     <div class="record-header">
       <div class="record-date-wrap">
         <div class="record-date">${fmtDate(r.date)}</div>
@@ -849,7 +849,7 @@ function build4WeekSummary(appts) {
     const dText = diff === 0 ? '今天！' : diff === 1 ? '明天' : diff + '日後';
     const spec = firstLine(r.specialist).split(' - ')[0];
     const sub = [firstLine(r.doctor), firstLine(r.location)].filter(Boolean).join(' · ');
-    return `<div class="appt-row">
+    return `<div class="appt-row" onclick="scrollToRecord('${r.id}')" style="cursor:pointer" title="點擊跳至詳情">
       <div class="date-pill ${pillCls}">
         <div class="mo">${MONTHS[d.getMonth()]}</div>
         <div class="dy">${d.getDate()}</div>
@@ -863,6 +863,18 @@ function build4WeekSummary(appts) {
     </div>`;
   }).join('');
   return `<div class="summary-card"><div class="summary-hdr"><span class="summary-hdr-title">📅 未來4週預約</span><span class="summary-hdr-count">共${appts.length}個</span></div>${items}</div>`;
+}
+
+function scrollToRecord(id) {
+  showPage('upcoming');
+  setTimeout(() => {
+    const el = document.getElementById('record-' + id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.style.transition = 'box-shadow 0.3s ease';
+    el.style.boxShadow = '0 0 0 3px #f3a83a, 0 4px 20px rgba(243,168,58,0.45)';
+    setTimeout(() => { el.style.boxShadow = ''; }, 1800);
+  }, 80);
 }
 
 function renderPendingCard(r) {
@@ -1226,7 +1238,7 @@ const CAL_COLOR_MAP = [
   { match: r => r.specialist && r.specialist.includes('內分泌'), label: '內分泌科', bg: '#E8DAEF', fg: '#6C3483', dot: '#8E44AD' },
   { match: r => r.specialist && r.specialist.includes('腦外'), label: '腦外科',   bg: '#FDEBD0', fg: '#A04000', dot: '#E67E22' },
   { match: r => r.specialist && r.specialist.includes('內科'), label: '內科',     bg: '#D5F5E3', fg: '#1E8449', dot: '#27AE60' },
-  { match: r => r.specialist && r.specialist.includes('放射'), label: '放射科',   bg: '#D1F2EB', fg: '#0E6655', dot: '#16A085' },
+  { match: r => ['放射','Phlebotomy','Lab Team','採血','化驗','Radiol'].some(k => (r.specialist||'').includes(k) || (r.doctor||'').includes(k)), label: '化驗/檢查', bg: '#FFF9C4', fg: '#7B6B00', dot: '#F9A825' },
 ];
 const CAL_DEFAULT_COLOR = { label: '其他', bg: '#EAECEE', fg: '#555', dot: '#95A5A6' };
 
