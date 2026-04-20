@@ -267,32 +267,6 @@
     "time": "14:30"
   },
   {
-    "id": "import_19",
-    "date": "2026-05-07",
-    "location": "屯門醫院日間醫療中心",
-    "specialist": "Phlebotomy / Lab Team / 採血化驗室團隊",
-    "doctor": "採血／化驗室團隊 Phlebotomy / Lab Team",
-    "expense": "",
-    "diagnosis": "Pre-operative and baseline blood tests scheduled at TMH.\nPanel: AFP, CEA (tumour markers), LFT (liver function), TFT (thyroid function), CBC (complete blood count), HbA1c (blood sugar control), RFT (kidney function), Lipid profile.\n\n中文：於屯門醫院（公立）預約進行術前及基線血液檢查。\n檢查項目：AFP、CEA（腫瘤標誌物）、肝功能（LFT）、甲狀腺功能（TFT）、全血計數（CBC）、糖化血紅素HbA1c（血糖控制）、腎功能（RFT）、血脂。",
-    "followup": "yes",
-    "followupDetail": "Results to be reviewed at TMH Cardiothoracic Surgery follow-up on 18/05/2026.\n\n中文：結果將於2026年5月18日屯門醫院心胸外科覆診時審閱。",
-    "notes": "Document Type: Blood Tests (Scheduled)\n血液檢查（預約） | Ref: Req TMHOR2606471424",
-    "createdAt": "2026-04-14T00:00:00.000Z"
-  },
-  {
-    "id": "import_20",
-    "date": "2026-05-18",
-    "location": "屯門醫院日間醫療中心",
-    "specialist": "胸肺外科 (Cardiothoracic Surgery)",
-    "doctor": "心胸外科團隊 Cardiothoracic Surgery Team",
-    "expense": "",
-    "diagnosis": "Scheduled post-investigation follow-up at TMH Cardiothoracic Surgery.\nReview: MRI brain result (Req TMHOR2606471343), PET-CT result (Req TMHOR2606471351), Blood test results (Req TMHOR2606471424).\n\n中文：於屯門醫院心胸外科預約術後跟蹤覆診。\n複查：磁力共振腦部結果（申請號TMHOR2606471343）、PET-CT全身掃描結果（申請號TMHOR2606471351）、血液檢查結果（申請號TMHOR2606471424）。",
-    "followup": "yes",
-    "followupDetail": "Finalise pre/post-operative staging. Confirm further management plan. Discuss operative risks given hypertension and BMI 34.2. Coordinate MDT discussion if required.\n\n中文：完成術前/術後分期評估。確認後續治療方案。\n考慮高血壓及BMI 34.2的手術風險，進行討論。\n如有需要，安排多科聯合會診（MDT）。",
-    "notes": "Document Type: Follow-up Appointment (Scheduled)\n覆診預約 | Ref: —",
-    "createdAt": "2026-04-14T00:00:00.000Z"
-  },
-  {
     "id": "import_24",
     "date": "2026-05-27",
     "time": "13:45",
