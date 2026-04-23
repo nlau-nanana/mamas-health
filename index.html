@@ -1425,6 +1425,8 @@ const JOURNEY_GROUPS = [
                 ((r.location||'').includes('屯門') || (r.location||'').includes('TMH') || (r.location||'').includes('Tuen Mun')) },
   { key: 'pub-endo',    label: '公立-內分泌科',               sublabel: '屯門醫院 Endocrinology',          section: 'public',
     match: r => (r.specialist||'').includes('內分泌') },
+  { key: 'pub-neuro',  label: '公立-腦外科',                 sublabel: '屯門醫院 Neurosurgery',           section: 'public',
+    match: r => (r.specialist||'').includes('腦外') || (r.specialist||'').includes('Neurosurg') },
   // ── 化驗/檢查 ──
   { key: 'lab-petct',   label: '化驗 - PET CT scan',          sublabel: '',                               section: 'lab',
     match: r => (r.notes||'').includes('PET-CT') || (r.diagnosis||'').includes('PET-CT') },

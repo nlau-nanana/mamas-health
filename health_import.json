@@ -171,16 +171,16 @@
   {
     "id": "import_14",
     "date": "2026-04-13",
+    "time": "08:30",
     "location": "屯門醫院日間醫療中心",
-    "specialist": "胸肺外科 (Cardiothoracic Surgery)",
-    "doctor": "Phlebotomy / Lab Team (8:30am)\nCardiothoracic Surgery Team (2:30pm)\n採血團隊 + 胸肺外科",
+    "specialist": "Phlebotomy / Lab Team / 採血化驗室團隊",
+    "doctor": "Phlebotomy / Lab Team\n採血團隊",
     "expense": "",
-    "diagnosis": "8:30am: Blood draw for Endocrinology (內分泌科) and Neurosurgery (腦外科) — pituitary hormone panel: ACTH, IGF-1, Cortisol AM, Prolactin, TFT (TSH+FT4), RFT+GFR. (Req TMHOR2607242763)\n\n2:30pm: New patient consultation (新症) with TMH Cardiothoracic Surgery (胸肺外科) — post-operative review following left VATS upper lobectomy at Union Hospital (02/04/2026).\n\n⚠️ Arrangements made at this 胸肺外科 新症 visit:\n  • CXR + OPD Follow-up: 10/08/2026 (11:30am X-ray → 2:45pm 胸肺外科覆診)\n  • CT Scan (Government / HA): Date TBD (待定)\n\n中文：早上8:30：內分泌科及腦外科荷爾蒙血液檢查，包括：ACTH、IGF-1、皮質醇（早上）、催乳素、甲狀腺功能（TSH+FT4）及腎功能+GFR。（申請號TMHOR2607242763）\n\n下午2:30：屯門醫院胸肺外科新症覆診——術後跟進，評估2026年4月2日於仁安醫院進行的微創胸腔鏡左上肺葉切除手術後情況。\n\n⚠️ 本次胸肺外科新症就診安排：\n  • 胸部X光 + 胸肺外科覆診：2026年8月10日（上午11:30 X光 → 下午2:45覆診）\n  • 政府（醫管局）CT掃描：日期待定",
+    "diagnosis": "8:30am: Blood draw for Endocrinology (內分泌科) and Neurosurgery (腦外科) — pituitary hormone panel: ACTH, IGF-1, Cortisol AM, Prolactin, TFT (TSH+FT4), RFT+GFR. (Req TMHOR2607242763)\n\n中文：早上8:30：內分泌科及腦外科荷爾蒙血液檢查，包括：ACTH、IGF-1、皮質醇（早上）、催乳素、甲狀腺功能（TSH+FT4）及腎功能+GFR。（申請號TMHOR2607242763）",
     "followup": "yes",
-    "followupDetail": "1. Await pituitary hormone blood results — for Endocrinology / Neurosurgery review.\n2. TMH Cardiothoracic Surgery to monitor post-op recovery: wound, respiratory function, CXR, pathology.\n3. ⚠️ Next scheduled follow-up: CXR + Cardiothoracic Surgery OPD — 10/08/2026.\n4. CT Scan (HA/Government) — date TBD; to be confirmed by TMH.\n5. Await final surgical pathology report for treatment planning.\n\n中文：1. 等候腦下垂體荷爾蒙血液檢查結果，供內分泌科及神經外科覆診審閱。\n2. 屯門醫院胸肺外科持續監察術後康復：傷口、呼吸功能、胸部X光及手術病理報告。\n3. ⚠️ 下次預約覆診：胸部X光 + 胸肺外科覆診——2026年8月10日。\n4. 政府（醫管局）CT掃描——日期待定，由屯門醫院安排確認。\n5. 等候最終手術病理報告後，制定後續治療方案。",
-    "notes": "Document Type: Blood Tests — 內分泌科 & 腦外科 (8:30am)\n+ New Patient Consultation — 胸肺外科 新症 (2:30pm) | Ref: —",
-    "createdAt": "2026-04-14T00:00:00.000Z",
-    "time": "08:30"
+    "followupDetail": "Await pituitary hormone blood results — for Endocrinology / Neurosurgery review.\n\n中文：等候腦下垂體荷爾蒙血液檢查結果，供內分泌科及神經外科覆診審閱。",
+    "notes": "Document Type: Blood Tests — 內分泌科 & 腦外科 (8:30am)\n| Ref: Blood Req: TMHOR2607242763",
+    "createdAt": "2026-04-14T00:00:00.000Z"
   },
   {
     "id": "import_22",
@@ -295,17 +295,31 @@
     "createdAt": "2026-04-20T08:33:04.509151"
   },
   {
+    "id": "import_21a",
+    "date": "2026-08-10",
+    "time": "11:30",
+    "location": "屯門醫院日間醫療中心",
+    "specialist": "放射科 (Radiology) - CXR 胸部X光",
+    "doctor": "Radiology Team — CXR\n放射科（胸部X光）",
+    "expense": "",
+    "diagnosis": "11:30am: Chest X-ray (CXR) at TMH Day Medical Centre — post-lobectomy surveillance. CXR result to be reviewed at 2:45pm Cardiothoracic Surgery OPD same day.\n\n中文：上午11:30：屯門醫院日間醫療中心進行胸部X光檢查——術後監察。X光結果將於同日下午2:45胸肺外科門診時審閱。",
+    "followup": "yes",
+    "followupDetail": "CXR result to be reviewed by Cardiothoracic Surgery team at 2:45pm OPD same day (10/08/2026).\n\n中文：胸部X光結果將於同日（10/08/2026）下午2:45胸肺外科門診時由醫生審閱。",
+    "notes": "Document Type: CXR (Chest X-ray) at 11:30am\n胸部X光（11:30） | Ref: X-ray Req: TMHOR2608047905",
+    "createdAt": "2026-04-14T00:00:00.000Z"
+  },
+  {
     "id": "import_21",
     "date": "2026-08-10",
+    "time": "14:45",
     "location": "屯門醫院日間醫療中心",
     "specialist": "胸肺外科 (Cardiothoracic Surgery)",
-    "doctor": "Radiology Team — CXR (11:30am)\n放射科（胸部X光）\n\nCardiothoracic Surgery Team — OPD (2:45pm)\n胸肺外科",
+    "doctor": "Cardiothoracic Surgery Team — OPD\n胸肺外科",
     "expense": "",
-    "diagnosis": "11:30am: Chest X-ray (CXR) at TMH Day Medical Centre.\n\n2:45pm: Cardiothoracic Surgery (胸肺外科) outpatient follow-up — approximately 4 months post left VATS upper lobectomy (02/04/2026). Doctor reviews CXR result, assesses lung function recovery, and conducts post-surgical surveillance.\n\nNote: CT Scan (Government/HA) also arranged at 13/04/2026 新症 visit — date TBD (待定).\n\n中文：上午11:30：屯門醫院日間醫療中心進行胸部X光檢查。\n\n下午2:45：屯門醫院胸肺外科門診覆診——距左上肺葉微創手術（02/04/2026）後約4個月。醫生複查X光結果、評估肺功能恢復及進行定期術後監察。\n\n備注：政府（醫管局）CT掃描亦於2026年4月13日新症覆診時安排，日期待定。",
+    "diagnosis": "2:45pm: Cardiothoracic Surgery (胸肺外科) outpatient follow-up — approximately 4 months post left VATS upper lobectomy (02/04/2026). Reviews CXR result (taken 11:30am same day), assesses lung function recovery, conducts post-surgical surveillance.\n\nNote: CT Scan (Government/HA) also arranged at 13/04/2026 新症 visit — date TBD (待定).\n\n中文：下午2:45：屯門醫院胸肺外科門診覆診——距左上肺葉微創手術（02/04/2026）後約4個月。複查同日上午X光結果、評估肺功能恢復及進行定期術後監察。\n\n備注：政府（醫管局）CT掃描亦於2026年4月13日新症覆診時安排，日期待定。",
     "followup": "yes",
     "followupDetail": "1. Review CXR — assess post-lobectomy lung recovery and any new findings.\n2. Discuss CT scan scheduling (Government/HA) for further surveillance.\n3. Ongoing post-resection surveillance for lung adenocarcinoma.\n\n中文：1. 審閱胸部X光——評估術後肺部康復及有否新發現。\n2. 討論政府（醫管局）CT掃描安排，用作定期術後監察。\n3. 肺腺癌術後持續監察計劃。",
-    "notes": "Document Type: CXR (Chest X-ray) at 11:30am\n+ Cardiothoracic Surgery OPD Follow-up at 2:45pm\n胸部X光（11:30）+ 胸肺外科覆診（14:45） | Ref: Arranged at\n13/04/2026\n胸肺外科 新症",
-    "createdAt": "2026-04-14T00:00:00.000Z",
-    "time": "11:30"
+    "notes": "Document Type: Cardiothoracic Surgery OPD Follow-up at 2:45pm\n胸肺外科覆診（14:45） | Ref: Arranged at 13/04/2026 胸肺外科 新症",
+    "createdAt": "2026-04-14T00:00:00.000Z"
   }
 ]
