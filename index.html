@@ -1406,27 +1406,43 @@ function showDayAppts(dateStr) {
 
 // ── Init ──────────────────────────────────────────────────────────────────
 // ── Journey ───────────────────────────────────────────────────────────────
-const PRIVATE_KW = ['HKBH','Baptist','浸院','浸信','Union','Canossa','Matilda','Adventist','私家','private'];
-const PUBLIC_KW  = ['TMH','Tuen Mun','屯門','Queen Mary','Princess Margaret','NDH','Pamela','公立','HA ','Hospital Authority'];
-
-function journeyLocType(records) {
-  const locs = records.map(r => r.location || '').join(' ');
-  if (PRIVATE_KW.some(k => locs.includes(k))) return 'private';
-  if (PUBLIC_KW.some(k => locs.includes(k)))  return 'public';
-  return 'public';
-}
-
-function journeyGroupKey(r) {
-  const doc = (r.doctor || '').split('\n')[0].trim();
-  return doc || (r.specialist || '').split('\n')[0].split(' - ')[0].trim() || '其他';
-}
-
-function journeySpecLabel(r) {
-  const spec = (r.specialist || '').split('\n')[0].trim();
-  const parts = spec.split(' - ');
-  // return the sub-part after ' - ' if exists, else the whole thing
-  return parts.length > 1 ? parts[1].trim() : parts[0].trim();
-}
+// Fixed group definitions — each record may match multiple groups (e.g. Apr 13 = blood draw + 胸肺外科)
+const JOURNEY_GROUPS = [
+  // ── 私家 ──
+  { key: 'dr-lo',       label: 'Dr Lo Cheuk Kin 勞卓堅醫生', sublabel: '胸肺外科專科醫生',   section: 'private',
+    match: r => (r.doctor||'').includes('勞卓堅') || (r.specialist||'').includes('勞卓堅') },
+  { key: 'dr-lee',      label: 'Dr Lee Yu Chung 李宇聰醫生', sublabel: '腫瘤科醫生',         section: 'private',
+    match: r => (r.doctor||'').includes('李宇聰') || (r.specialist||'').includes('李宇聰') ||
+                (r.location||'').includes('腫瘤中心') || (r.location||'').includes('Oncology Centre') },
+  // ── 公立 ──
+  { key: 'pub-cardio',  label: '公立-胸肺外科',               sublabel: '屯門醫院 Cardiothoracic Surgery', section: 'public',
+    match: r => ((r.specialist||'').includes('胸肺') || (r.doctor||'').includes('Cardiothoracic') || (r.doctor||'').includes('胸肺')) &&
+                ((r.location||'').includes('屯門') || (r.location||'').includes('TMH') || (r.location||'').includes('Tuen Mun')) &&
+                !(r.doctor||'').includes('勞卓堅') },
+  { key: 'pub-medicine',label: '公立-內科',                   sublabel: '屯門醫院 Internal Medicine',      section: 'public',
+    match: r => ((r.specialist||'').includes('內科') || (r.doctor||'').includes('Sin Kit Man') ||
+                 (r.doctor||'').includes('冼傑民') || (r.doctor||'').includes('Hau Kai') || (r.doctor||'').includes('侯啟正')) &&
+                ((r.location||'').includes('屯門') || (r.location||'').includes('TMH') || (r.location||'').includes('Tuen Mun')) },
+  { key: 'pub-endo',    label: '公立-內分泌科',               sublabel: '屯門醫院 Endocrinology',          section: 'public',
+    match: r => (r.specialist||'').includes('內分泌') },
+  // ── 化驗/檢查 ──
+  { key: 'lab-petct',   label: '化驗 - PET CT scan',          sublabel: '',                               section: 'lab',
+    match: r => (r.notes||'').includes('PET-CT') || (r.diagnosis||'').includes('PET-CT') },
+  { key: 'lab-ct',      label: '化驗 - CT / MRI scan',        sublabel: '',                               section: 'lab',
+    match: r => { const n=(r.notes||'').toLowerCase(), d=(r.diagnosis||'').toLowerCase();
+                  return (n.includes('ct thorax') || n.includes('mri') || n.includes('ct-guided') ||
+                          d.includes('mri brain') || d.includes('ct thorax')) &&
+                         !(n.includes('pet-ct') || d.includes('pet-ct')); } },
+  { key: 'lab-xray',    label: '化驗 - X ray',                sublabel: '',                               section: 'lab',
+    match: r => (r.notes||'').includes('CXR') || (r.notes||'').includes('X-ray') ||
+                (r.doctor||'').includes('Radiology Team') || (r.diagnosis||'').includes('CXR') ||
+                (r.diagnosis||'').includes('Chest X-ray') },
+  { key: 'lab-blood',   label: '化驗 - 抽血',                  sublabel: '',                               section: 'lab',
+    match: r => (r.specialist||'').includes('Phlebotomy') || (r.specialist||'').includes('採血') ||
+                (r.specialist||'').includes('Lab Team') || (r.doctor||'').includes('Phlebotomy') ||
+                (r.specialist||'').includes('Pathologist') || (r.specialist||'').includes('病理') ||
+                (r.doctor||'').includes('Lab (Blood') },
+];
 
 function journeyMilestoneLabel(r) {
   const spec = (r.specialist || '').split('\n')[0].trim();
@@ -1511,7 +1527,8 @@ function buildJourneyCard(group, todayStr) {
 
   return `<div class="journey-card">
     <div class="journey-card-hdr">
-      <div class="journey-card-name">🩺 ${group.key}</div>
+      <div class="journey-card-name">🩺 ${group.label}</div>
+      ${group.sublabel ? `<div style="font-size:11px;color:var(--text-light);margin-top:1px">${group.sublabel}</div>` : ''}
       <div class="journey-card-meta">首次 ${fmtDate(first)} · 跟進 ${duration} · 共${total}次診症</div>
     </div>
     ${buildJourneyDots(sorted, todayStr)}
@@ -1528,28 +1545,23 @@ function renderJourney() {
   const todayStr = (()=>{const t=new Date();return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');})();
   const records  = getRecords().filter(r => r.status !== 'pending' && r.date);
 
-  // Build groups
-  const map = {};
-  records.forEach(r => {
-    const k = journeyGroupKey(r);
-    if (!map[k]) map[k] = { key: k, records: [] };
-    map[k].records.push(r);
-  });
+  // Build fixed groups — a record may appear in multiple groups
+  const builtGroups = JOURNEY_GROUPS.map(def => ({
+    ...def,
+    records: records.filter(r => def.match(r)).sort((a,b) => a.date.localeCompare(b.date))
+  })).filter(g => g.records.length > 0);
 
-  const groups = Object.values(map);
-  groups.sort((a,b) => a.records.reduce((mn,r)=>r.date<mn?r.date:mn, '9999').localeCompare(
-                        b.records.reduce((mn,r)=>r.date<mn?r.date:mn, '9999')));
+  // Collect unmatched records (appear in no group) → 其他
+  const matchedIds = new Set(builtGroups.flatMap(g => g.records.map(r => r.id)));
+  const others = records.filter(r => !matchedIds.has(r.id)).sort((a,b) => a.date.localeCompare(b.date));
 
-  const priv = groups.filter(g => journeyLocType(g.records) === 'private');
-  const pub  = groups.filter(g => journeyLocType(g.records) === 'public');
-
-  const totalDrs    = groups.length;
-  const totalAppts  = records.length;
-  const totalPast   = records.filter(r => r.date <= todayStr).length;
-  const totalFuture = records.filter(r => r.date > todayStr).length;
+  const totalDrs   = builtGroups.length;
+  const totalAppts = records.length;
+  const totalPast  = records.filter(r => r.date <= todayStr).length;
+  const totalFuture= records.filter(r => r.date > todayStr).length;
 
   let html = `<div class="journey-overview">
-    <div class="journey-overview-chip"><div class="journey-overview-num">${totalDrs}</div><div class="journey-overview-lbl">位醫生/專科</div></div>
+    <div class="journey-overview-chip"><div class="journey-overview-num">${totalDrs}</div><div class="journey-overview-lbl">個分組</div></div>
     <div class="journey-overview-chip"><div class="journey-overview-num">${totalAppts}</div><div class="journey-overview-lbl">次診症合計</div></div>
     <div class="journey-overview-chip"><div class="journey-overview-num">${totalPast}</div><div class="journey-overview-lbl">✅ 已完成</div></div>
     <div class="journey-overview-chip"><div class="journey-overview-num">${totalFuture}</div><div class="journey-overview-lbl">📅 即將</div></div>
@@ -1565,19 +1577,26 @@ function renderJourney() {
         <div class="journey-section-line" style="flex:1;height:1.5px;background:var(--border)"></div>
       </div>
       <div class="journey-section-stats">
-        <span class="journey-stat-pill">👥 ${groupList.length}位</span>
+        <span class="journey-stat-pill">🗂️ ${groupList.length}組</span>
         <span class="journey-stat-pill">✅ ${sc}次完成</span>
         <span class="journey-stat-pill">📅 ${su}次即將</span>
       </div>
       ${groupList.map(g => buildJourneyCard(g, todayStr)).join('')}`;
   }
 
-  html += sectionHtml('私家', '🏥', priv);
-  html += sectionHtml('公立', '🏛️', pub);
+  const priv = builtGroups.filter(g => g.section === 'private');
+  const pub  = builtGroups.filter(g => g.section === 'public');
+  const lab  = builtGroups.filter(g => g.section === 'lab');
 
-  if (groups.length === 0) {
-    html += `<div class="journey-empty">📋 暫無診症記錄</div>`;
+  html += sectionHtml('私家醫生', '🏥', priv);
+  html += sectionHtml('公立專科', '🏛️', pub);
+  html += sectionHtml('化驗 / 檢查', '🔬', lab);
+
+  if (others.length > 0) {
+    html += sectionHtml('其他', '📋', [{ key: '其他診症', label: '其他診症', sublabel: '', records: others }]);
   }
+
+  if (builtGroups.length === 0) html += `<div class="journey-empty">📋 暫無診症記錄</div>`;
 
   document.getElementById('journey-content').innerHTML = html;
 }
@@ -1592,7 +1611,9 @@ async function init() {
       const fresh = await res.json();
       if (Array.isArray(fresh) && fresh.length > 0) {
         const freshIds = new Set(fresh.map(r => r.id));
-        const localOnly = getRecords().filter(r => !freshIds.has(r.id));
+        // Only preserve records created locally on this device (non-import_ IDs).
+        // Records with import_ IDs that are no longer in the JSON were intentionally removed.
+        const localOnly = getRecords().filter(r => !freshIds.has(r.id) && !r.id.startsWith('import_'));
         saveRecords([...fresh, ...localOnly]);
       }
     }
