@@ -265,12 +265,131 @@
     .journey-overview-chip { flex: 1; min-width: 80px; background: white; border-radius: 12px; box-shadow: var(--shadow); padding: 10px 12px; text-align: center; }
     .journey-overview-num { font-size: 22px; font-weight: 800; color: var(--primary); }
     .journey-overview-lbl { font-size: 10px; color: var(--text-light); margin-top: 2px; }
+
+    /* ── Landing screen ── */
+    .landing-choice-btn {
+      width:100%;max-width:320px;background:white;border:none;border-radius:20px;
+      padding:22px 20px;cursor:pointer;display:flex;align-items:center;gap:18px;
+      box-shadow:0 4px 20px rgba(0,0,0,.18);transition:transform .15s;text-align:left;
+      font-family:inherit;
+    }
+    .landing-choice-btn:active { transform:scale(0.97); }
+    .landing-choice-btn strong { display:block;font-size:24px;font-weight:800;color:#1a3a6a; }
+    .landing-choice-btn span { font-size:14px;color:#7f8c8d;margin-top:3px;display:block; }
+
+    /* ── Elder screen ── */
+    .elder-header {
+      background:linear-gradient(135deg,#1a4a7a,#2c6fad);color:white;
+      padding:16px 18px;display:flex;justify-content:space-between;align-items:center;
+      position:sticky;top:0;z-index:10;
+    }
+    .elder-hdr-btn {
+      background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);
+      color:white;border-radius:10px;padding:7px 12px;font-size:13px;cursor:pointer;
+      font-family:inherit;font-weight:600;
+    }
+    .elder-nav {
+      position:fixed;bottom:0;left:0;right:0;background:white;
+      border-top:2px solid #dce3ec;display:flex;z-index:10;
+      box-shadow:0 -2px 10px rgba(0,0,0,.06);
+    }
+    .elder-nav-btn {
+      flex:1;border:none;background:none;padding:10px 4px 13px;font-size:13px;
+      font-weight:700;color:#7f8c8d;cursor:pointer;font-family:inherit;
+      display:flex;flex-direction:column;align-items:center;gap:3px;transition:color .2s;
+    }
+    .elder-nav-btn.active { color:#2c6fad; }
+    .elder-appt-card {
+      background:white;border-radius:18px;box-shadow:0 3px 15px rgba(0,0,0,.08);
+      margin-bottom:16px;overflow:hidden;border-left:6px solid #2c6fad;
+    }
+    .elder-appt-card.elder-today-card { border-left-color:#e67e22; }
+    .elder-appt-card.elder-soon-card  { border-left-color:#e74c3c; }
+    .elder-appt-hdr { padding:16px 18px 12px; }
+    .elder-date { font-size:23px;font-weight:800;color:#1a3a6a;line-height:1.3; }
+    .elder-date.elder-today-lbl { color:#e67e22; }
+    .elder-time { font-size:22px;font-weight:700;color:#2c6fad;margin-top:5px; }
+    .elder-badge { display:inline-block;border-radius:20px;padding:4px 14px;font-size:14px;font-weight:700;margin-top:6px; }
+    .elder-badge.today { background:#fdebd0;color:#e67e22; }
+    .elder-badge.soon  { background:#fdecea;color:#c0392b; }
+    .elder-badge.norm  { background:#eaf2fb;color:#2c6fad; }
+    .elder-loc  { font-size:18px;color:#2c3e50;margin-top:10px;display:flex;align-items:flex-start;gap:7px; }
+    .elder-dept { font-size:17px;color:#555;margin-top:6px;display:flex;align-items:flex-start;gap:7px; }
+    .elder-appt-actions { padding:0 14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+    .elder-action-btn {
+      border:none;border-radius:12px;padding:15px 8px;font-size:15px;font-weight:700;
+      cursor:pointer;font-family:inherit;display:flex;align-items:center;
+      justify-content:center;gap:6px;transition:transform .15s;line-height:1.2;
+    }
+    .elder-action-btn:active { transform:scale(0.96); }
+    .elder-btn-map  { grid-column:1/-1;background:#e8f4fd;color:#1a5276; }
+    .elder-btn-cal  { background:#e8f5e9;color:#1e6b3a; }
+    .elder-btn-copy { background:#fff3e0;color:#7b4000; }
+    .elder-empty { text-align:center;padding:60px 20px;color:#7f8c8d; }
+    .elder-empty-icon { font-size:64px;margin-bottom:16px; }
+    .elder-empty-text { font-size:22px;font-weight:600; }
+    .elder-contact-card {
+      background:white;border-radius:16px;box-shadow:0 2px 10px rgba(0,0,0,.07);
+      margin-bottom:12px;padding:16px 18px;display:flex;align-items:center;gap:14px;
+    }
+    .elder-contact-name  { font-size:21px;font-weight:800;color:#1a3a6a; }
+    .elder-contact-note  { font-size:14px;color:#7f8c8d;margin-top:3px; }
+    .elder-contact-phone { font-size:17px;color:#2c6fad;margin-top:5px;font-weight:600; }
+    .elder-call-btn {
+      background:#27ae60;color:white;border:none;border-radius:50%;
+      width:58px;height:58px;font-size:26px;cursor:pointer;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 3px 10px rgba(39,174,96,.4);transition:transform .15s;
+    }
+    .elder-call-btn:active { transform:scale(0.92); }
+    .elder-call-btn.no-phone { background:#bdc3c7;box-shadow:none; }
+    .elder-add-btn {
+      width:100%;background:white;border:2.5px dashed #2c6fad;border-radius:16px;
+      padding:18px;font-size:18px;font-weight:700;color:#2c6fad;cursor:pointer;
+      font-family:inherit;margin-top:6px;transition:background .15s;
+    }
+    .elder-add-btn:active { background:#e8f4fd; }
+    .elder-form-card { background:white;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.07); }
+    .elder-input {
+      width:100%;border:2px solid #dce3ec;border-radius:12px;padding:14px 16px;
+      font-size:18px;font-family:inherit;color:#2c3e50;margin-bottom:12px;
+      -webkit-appearance:none;box-sizing:border-box;
+    }
+    .elder-input:focus { outline:none;border-color:#2c6fad; }
+    .elder-save-btn {
+      width:100%;background:#2c6fad;color:white;border:none;border-radius:12px;
+      padding:16px;font-size:18px;font-weight:700;cursor:pointer;font-family:inherit;
+    }
+    .elder-cancel-btn {
+      width:100%;background:#f0f0f0;color:#666;border:none;border-radius:12px;
+      padding:14px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:8px;
+    }
   </style>
 </head>
 <body>
 
+<!-- Landing Screen -->
+<div id="landing-screen" style="position:fixed;inset:0;z-index:9998;background:linear-gradient(160deg,#1a4a7a,#2c6fad,#4a90d9);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 24px;gap:20px">
+  <div style="color:white;font-size:30px;font-weight:800;text-align:center">💊 媽媽健康記錄</div>
+  <div style="color:rgba(255,255,255,0.8);font-size:16px;text-align:center;margin-bottom:10px">林月霞 · 請問您是？</div>
+  <button class="landing-choice-btn" onclick="enterElderMode()">
+    <span style="font-size:40px">👵</span>
+    <div>
+      <strong>我係老友記</strong>
+      <span>睇預約 · 聯絡人</span>
+    </div>
+  </button>
+  <button class="landing-choice-btn" onclick="enterFamilyMode()">
+    <span style="font-size:40px">👨‍👩‍👧</span>
+    <div>
+      <strong>我係家人</strong>
+      <span>管理所有記錄</span>
+    </div>
+  </button>
+</div>
+
 <!-- PIN Screen -->
-<div id="pin-screen">
+<div id="pin-screen" style="display:none">
   <div class="pin-title">💊 媽媽健康記錄</div>
   <div class="pin-sub">請輸入密碼 · Enter PIN</div>
   <div class="pin-dots" id="pin-dots">
@@ -296,6 +415,29 @@
     <button class="pin-btn" onclick="pinDel()">⌫</button>
   </div>
   <div class="pin-error-msg" id="pin-error"></div>
+</div>
+
+<!-- Elder Screen -->
+<div id="elder-screen" style="display:none;position:fixed;inset:0;z-index:997;background:#f0f4f8;overflow-y:auto;padding-bottom:80px">
+  <div class="elder-header">
+    <div>
+      <div style="font-size:20px;font-weight:800">💊 媽媽健康記錄</div>
+      <div style="font-size:12px;opacity:0.8;margin-top:2px">林月霞</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="elder-hdr-btn" id="elder-lang-btn" onclick="elderToggleLang()">中/EN</button>
+      <button class="elder-hdr-btn" onclick="showLanding()">家人版</button>
+    </div>
+  </div>
+  <div id="elder-content" style="padding:14px"></div>
+  <div class="elder-nav">
+    <button class="elder-nav-btn active" id="elder-nav-appts" onclick="elderShowTab('appts')">
+      <span style="font-size:26px">📅</span><span>預約</span>
+    </button>
+    <button class="elder-nav-btn" id="elder-nav-contacts" onclick="elderShowTab('contacts')">
+      <span style="font-size:26px">📞</span><span>聯絡</span>
+    </button>
+  </div>
 </div>
 
 <!-- Header -->
@@ -1193,9 +1335,24 @@ function copyWhatsApp() {
 const _PH = btoa('600227');
 let _pe = '';
 
-(function checkPinOnLoad() {
-  if (sessionStorage.getItem('unlocked') === _PH)
-    document.getElementById('pin-screen').style.display = 'none';
+(function initScreenMode() {
+  const mode = sessionStorage.getItem('elderMode');
+  if (mode === 'elder') {
+    document.getElementById('landing-screen').style.display = 'none';
+    document.getElementById('elder-screen').style.display = 'block';
+    return;
+  }
+  if (mode === 'family') {
+    document.getElementById('landing-screen').style.display = 'none';
+    if (sessionStorage.getItem('unlocked') === _PH) {
+      // pin already hidden, family app visible
+    } else {
+      const ps = document.getElementById('pin-screen');
+      ps.style.display = 'flex'; ps.style.opacity = '1';
+    }
+    return;
+  }
+  // No mode chosen yet — landing screen shows (it's flex by default)
 })();
 
 function pinPress(n) {
@@ -1603,6 +1760,221 @@ function renderJourney() {
   document.getElementById('journey-content').innerHTML = html;
 }
 
+// ── Elder / Grandma Mode ──────────────────────────────────────────────────
+function showLanding() {
+  sessionStorage.removeItem('elderMode');
+  document.getElementById('landing-screen').style.cssText = 'position:fixed;inset:0;z-index:9998;background:linear-gradient(160deg,#1a4a7a,#2c6fad,#4a90d9);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 24px;gap:20px';
+  document.getElementById('elder-screen').style.display = 'none';
+  document.getElementById('pin-screen').style.display = 'none';
+}
+
+function enterElderMode() {
+  sessionStorage.setItem('elderMode', 'elder');
+  document.getElementById('landing-screen').style.display = 'none';
+  document.getElementById('elder-screen').style.display = 'block';
+  elderShowTab('appts');
+}
+
+function enterFamilyMode() {
+  sessionStorage.setItem('elderMode', 'family');
+  document.getElementById('landing-screen').style.display = 'none';
+  if (sessionStorage.getItem('unlocked') === _PH) {
+    document.getElementById('pin-screen').style.display = 'none';
+  } else {
+    const ps = document.getElementById('pin-screen');
+    ps.style.display = 'flex'; ps.style.opacity = '1';
+  }
+}
+
+let _elderLang = 'zh';
+
+function elderToggleLang() {
+  _elderLang = _elderLang === 'zh' ? 'zh-en' : 'zh';
+  document.getElementById('elder-lang-btn').textContent = _elderLang === 'zh' ? '中/EN' : '純中文';
+  if (_elderCurrentTab === 'appts') renderElderAppts();
+  else renderElderContacts();
+}
+
+let _elderCurrentTab = 'appts';
+
+function elderShowTab(tab) {
+  _elderCurrentTab = tab;
+  document.querySelectorAll('.elder-nav-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('elder-nav-' + tab);
+  if (btn) btn.classList.add('active');
+  if (tab === 'appts') renderElderAppts();
+  if (tab === 'contacts') renderElderContacts();
+}
+
+function elderShortLoc(location) {
+  if (!location) return '';
+  const l = location.split('\n')[0].trim();
+  if (l.includes('屯門醫院') || l.includes('TMH') || l.includes('Tuen Mun')) return '屯門醫院日間醫療';
+  if (l.includes('Alliance') || l.includes('安匯')) return '安匯醫務中心';
+  if (l.includes('Union') || l.includes('仁安')) return '仁安醫院';
+  if (l.includes('Baptist') || l.includes('浸信') || l.includes('HKBH')) return '浸信會醫院';
+  if (l.includes('A1 Imaging') || l.includes('A1醫療')) return 'A1醫療診斷中心';
+  if (l.includes('腫瘤中心') || l.includes('Oncology Centre')) return '香港腫瘤中心';
+  if (l.includes('楊連傑') || l.includes('Yeung Lin Kit')) return '楊連傑牙科診所';
+  return l.length > 18 ? l.substring(0, 18) + '…' : l;
+}
+
+function elderShortLocEn(location) {
+  if (!location) return '';
+  const lines = location.split('\n');
+  const en = lines.find(l => /[a-zA-Z]{3,}/.test(l) && !/[一-龥]/.test(l));
+  return en ? en.trim() : '';
+}
+
+function elderFmtDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T00:00:00');
+  const wds = ['日','一','二','三','四','五','六'];
+  return `${d.getMonth()+1}月${d.getDate()}日（星期${wds[d.getDay()]}）`;
+}
+
+function elderFmtDateEn(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T00:00:00');
+  const ms = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const ds = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  return `${ds[d.getDay()]}, ${d.getDate()} ${ms[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function elderDiff(dateStr) {
+  const t = new Date(); t.setHours(0,0,0,0);
+  return Math.round((new Date(dateStr+'T00:00:00') - t) / 86400000);
+}
+
+function elderCopyAppt(id) {
+  const r = getRecords().find(x => x.id === id);
+  if (!r) return;
+  const loc = elderShortLoc(r.location);
+  const doc = (r.doctor||'').split('\n')[0].trim() || (r.specialist||'').split('\n')[0].split('(')[0].split('（')[0].trim();
+  let text = `📋 預約詳情\n日期：${elderFmtDate(r.date)}\n時間：${r.time ? fmtTime(r.time) : '待確認'}\n地點：${loc}\n醫生／部門：${doc}`;
+  if (_elderLang === 'zh-en') {
+    const locEn = elderShortLocEn(r.location) || loc;
+    const docEn = (r.doctor||'').split('\n').find(l => /[a-zA-Z]{2,}/.test(l) && !/[一-龥]/.test(l)) || doc;
+    text += `\n\n--- English ---\nDate: ${elderFmtDateEn(r.date)}\nTime: ${r.time ? fmtTime(r.time) : 'TBC'}\nLocation: ${locEn}\nDoctor/Dept: ${docEn}`;
+  }
+  const copy = t => { try { navigator.clipboard.writeText(t).then(() => showToast('✅ 已複製！可以貼上WhatsApp')); } catch(e) { const el=document.createElement('textarea'); el.value=t; el.style='position:fixed;opacity:0'; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); showToast('✅ 已複製！可以貼上WhatsApp'); } };
+  copy(text);
+}
+
+function elderOpenMap(id) {
+  const r = getRecords().find(x => x.id === id);
+  if (!r || !r.location) { showToast('⚠️ 未有地址資料'); return; }
+  const addr = r.location.split('\n').slice(0,3).join(' ').trim();
+  window.open('https://maps.google.com/?q=' + encodeURIComponent(addr), '_blank');
+}
+
+function renderElderAppts() {
+  const ts = (()=>{const t=new Date();return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');})();
+  const recs = getRecords().filter(r => r.status !== 'pending' && r.date && r.date >= ts)
+    .sort((a,b) => a.date.localeCompare(b.date));
+  const el = document.getElementById('elder-content');
+  if (recs.length === 0) {
+    el.innerHTML = `<div class="elder-empty"><div class="elder-empty-icon">🎉</div><div class="elder-empty-text">近期冇預約</div></div>`;
+    return;
+  }
+  el.innerHTML = recs.map(r => {
+    const diff = elderDiff(r.date);
+    const isToday = diff === 0; const isSoon = diff > 0 && diff <= 3;
+    const cardCls = isToday ? 'elder-today-card' : isSoon ? 'elder-soon-card' : '';
+    const dateCls = isToday ? 'elder-today-lbl' : '';
+    const loc = elderShortLoc(r.location);
+    const locEn = _elderLang === 'zh-en' ? elderShortLocEn(r.location) : '';
+    const spec = (r.specialist||'').split('\n')[0].split('(')[0].split('（')[0].trim();
+    const doc = (r.doctor||'').split('\n')[0].trim();
+    const badge = isToday ? `<span class="elder-badge today">今日預約 🔔</span>`
+                 : diff===1 ? `<span class="elder-badge soon">明天</span>`
+                 : isSoon ? `<span class="elder-badge soon">還有 ${diff} 日</span>`
+                 : `<span class="elder-badge norm">還有 ${diff} 日</span>`;
+    return `<div class="elder-appt-card ${cardCls}">
+      <div class="elder-appt-hdr">
+        <div class="elder-date ${dateCls}">${elderFmtDate(r.date)}${_elderLang==='zh-en'?`<div style="font-size:15px;font-weight:600;color:#888;margin-top:2px">${elderFmtDateEn(r.date)}</div>`:''}</div>
+        ${r.time?`<div class="elder-time">🕐 ${fmtTime(r.time)}</div>`:''}
+        ${badge}
+        <div class="elder-loc"><span>🏥</span><span>${loc}${locEn?`<br><span style="font-size:14px;color:#aaa">${locEn}</span>`:''}</span></div>
+        <div class="elder-dept"><span>👨‍⚕️</span><span>${doc||spec}</span></div>
+      </div>
+      <div class="elder-appt-actions">
+        <button class="elder-action-btn elder-btn-map" onclick="elderOpenMap('${r.id}')">🗺️ 帶我去</button>
+        <button class="elder-action-btn elder-btn-cal" onclick="addToDeviceCalendar('${r.id}')">📅 加入日曆</button>
+        <button class="elder-action-btn elder-btn-copy" onclick="elderCopyAppt('${r.id}')">📋 複製 → WhatsApp</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Elder Contacts ────────────────────────────────────────────────────────
+const ELDER_DEFAULT_CONTACTS = [
+  { id:'ec1', name:'勞卓堅醫生', nameEn:'Dr Lo Cheuk Kin',   note:'胸肺外科私家醫生',  phone:'' },
+  { id:'ec2', name:'李宇聰醫生', nameEn:'Dr Lee Yu Chung',   note:'腫瘤科私家醫生',   phone:'' },
+  { id:'ec3', name:'屯門醫院胸肺科', nameEn:'TMH Cardiothoracic', note:'胸肺外科熱線', phone:'' },
+  { id:'ec4', name:'屯門醫院腦外科', nameEn:'TMH Neurosurgery',   note:'腦外科熱線',   phone:'' },
+  { id:'ec5', name:'屯門醫院內分泌科',nameEn:'TMH Endocrinology',  note:'內分泌科熱線',  phone:'' },
+];
+function getElderContacts() {
+  const raw = localStorage.getItem('elder_contacts');
+  if (raw) return JSON.parse(raw);
+  localStorage.setItem('elder_contacts', JSON.stringify(ELDER_DEFAULT_CONTACTS));
+  return ELDER_DEFAULT_CONTACTS;
+}
+function saveElderContacts(list) { localStorage.setItem('elder_contacts', JSON.stringify(list)); }
+let _elderAddingContact = false;
+
+function renderElderContacts() {
+  const contacts = getElderContacts();
+  let html = '';
+  if (_elderAddingContact) {
+    html += `<div class="elder-form-card">
+      <div style="font-size:20px;font-weight:800;color:#1a3a6a;margin-bottom:14px">➕ 新增聯絡人</div>
+      <input class="elder-input" id="ec-name" placeholder="姓名 Name" type="text">
+      <input class="elder-input" id="ec-note" placeholder="備註（例如：私家醫生）" type="text">
+      <input class="elder-input" id="ec-phone" placeholder="電話號碼" type="tel">
+      <button class="elder-save-btn" onclick="elderSaveContact()">💾 儲存</button>
+      <button class="elder-cancel-btn" onclick="elderCancelAdd()">取消</button>
+    </div>`;
+  }
+  html += contacts.map(c => {
+    const hasPhone = c.phone && c.phone.trim();
+    return `<div class="elder-contact-card">
+      <div style="flex:1;min-width:0">
+        <div class="elder-contact-name">${c.name}</div>
+        ${_elderLang==='zh-en'&&c.nameEn?`<div style="font-size:14px;color:#aaa">${c.nameEn}</div>`:''}
+        <div class="elder-contact-note">${c.note||''}</div>
+        ${hasPhone?`<div class="elder-contact-phone">📞 ${c.phone}</div>`:`<button onclick="elderEditPhone('${c.id}')" style="margin-top:6px;background:#f0f7ff;border:1.5px solid #2c6fad;border-radius:8px;padding:4px 10px;font-size:13px;color:#2c6fad;cursor:pointer;font-family:inherit">✏️ 新增電話</button>`}
+      </div>
+      <button class="elder-call-btn${hasPhone?'':' no-phone'}" onclick="${hasPhone?`window.location.href='tel:${c.phone}'`:`elderEditPhone('${c.id}')`}" title="${hasPhone?'致電':'新增電話'}">${hasPhone?'📞':'✏️'}</button>
+    </div>`;
+  }).join('');
+  if (!_elderAddingContact) html += `<button class="elder-add-btn" onclick="elderStartAdd()">➕ 新增聯絡人</button>`;
+  document.getElementById('elder-content').innerHTML = html;
+}
+
+function elderStartAdd()  { _elderAddingContact = true;  renderElderContacts(); }
+function elderCancelAdd() { _elderAddingContact = false; renderElderContacts(); }
+function elderSaveContact() {
+  const name = document.getElementById('ec-name').value.trim();
+  if (!name) { showToast('⚠️ 請輸入姓名'); return; }
+  const note  = document.getElementById('ec-note').value.trim();
+  const phone = document.getElementById('ec-phone').value.trim();
+  const list  = getElderContacts();
+  list.push({ id:'ec'+Date.now(), name, nameEn:'', note, phone });
+  saveElderContacts(list);
+  _elderAddingContact = false;
+  renderElderContacts();
+  showToast('✅ 已新增聯絡人');
+}
+function elderEditPhone(id) {
+  const phone = prompt('請輸入電話號碼：');
+  if (phone === null) return;
+  const list = getElderContacts();
+  const c = list.find(x => x.id === id);
+  if (c) { c.phone = phone.trim(); saveElderContacts(list); renderElderContacts(); }
+}
+
 async function init() {
   await initIDB();
   // Always fetch latest records from server so all family phones stay in sync.
@@ -1623,6 +1995,7 @@ async function init() {
   document.getElementById('f-date').value = new Date().toISOString().split('T')[0];
   renderUpcoming();
   updateBadge();
+  if (sessionStorage.getItem('elderMode') === 'elder') elderShowTab('appts');
 }
 init();
 </script>
