@@ -425,8 +425,7 @@
       <div style="font-size:12px;opacity:0.8;margin-top:2px">林月霞</div>
     </div>
     <div style="display:flex;gap:8px">
-      <button class="elder-hdr-btn" id="elder-lang-btn" onclick="elderToggleLang()">中/EN</button>
-      <button class="elder-hdr-btn" onclick="showLanding()">家人版</button>
+      <button class="elder-hdr-btn" onclick="showLanding()">轉向家人版（詳細資料）</button>
     </div>
   </div>
   <div id="elder-content" style="padding:14px"></div>
@@ -447,7 +446,8 @@
     <p>林月霞 · Medical Record &amp; Appointment Tracker</p>
   </div>
   <div class="header-right" style="display:flex;gap:6px">
-    <button onclick="enterElderMode()">👵 老友記</button>
+    <button id="family-lang-btn" onclick="familyToggleLang()">中文</button>
+    <button onclick="enterElderMode()">👵 轉向老友記版（簡單資料）</button>
     <button onclick="openWhatsAppModal()">📤 分享給媽媽</button>
   </div>
 </div>
@@ -984,7 +984,8 @@ function renderRecordCard(r, num) {
   const loc   = firstLine(r.location);
   const doc   = firstLine(r.doctor);
   const spec  = firstLine(r.specialist);
-  const diagShort = r.diagnosis ? r.diagnosis.substring(0, 160) + (r.diagnosis.length > 160 ? '…' : '') : '';
+  const diagFiltered = familyLangFilter(r.diagnosis || '');
+  const diagShort = diagFiltered ? diagFiltered.substring(0, 160) + (diagFiltered.length > 160 ? '…' : '') : '';
   return `<div id="record-${r.id}" class="record-card ${st.card}">
     <div class="record-header">
       <div class="record-date-wrap">
@@ -1003,7 +1004,7 @@ function renderRecordCard(r, num) {
       ${doc ? `<div class="record-row"><span class="record-label">🩺 醫生</span><span class="record-value">${doc}</span></div>` : ''}
       ${r.expense ? `<div class="record-row"><span class="record-label">💰 費用</span><span class="record-value expense-val">HKD $${parseFloat(r.expense).toLocaleString('zh-HK',{maximumFractionDigits:0})}</span></div>` : ''}
       ${diagShort ? `<div class="record-row"><span class="record-label">📋 診斷</span><span class="record-value">${diagShort}</span></div>` : ''}
-      ${r.followup==='yes'&&r.followupDetail ? `<div class="record-row"><span class="record-label">🔔 跟進</span><span class="record-value">${firstLine(r.followupDetail)}</span></div>` : ''}
+      ${r.followup==='yes'&&r.followupDetail ? `<div class="record-row"><span class="record-label">🔔 跟進</span><span class="record-value">${firstLine(familyLangFilter(r.followupDetail))}</span></div>` : ''}
       ${r.notes ? `<div class="record-row"><span class="record-label">📄 文件</span><span class="record-value">${firstLine(r.notes)}</span></div>` : ''}
       <div id="att-badge-${r.id}"></div>
       <div class="divider"></div>
@@ -1187,8 +1188,8 @@ function viewFull(id) {
       ${r.location ? `<div><strong>🏥 地點</strong><br><span style="white-space:pre-wrap">${r.location}</span></div>` : ''}
       ${r.doctor   ? `<div><strong>🩺 醫生</strong><br><span style="white-space:pre-wrap">${r.doctor}</span></div>` : ''}
       ${r.expense  ? `<div><strong>💰 費用</strong><br>HKD $${parseFloat(r.expense).toLocaleString('zh-HK',{maximumFractionDigits:0})}</div>` : ''}
-      ${r.diagnosis ? `<div><strong>📋 診斷</strong><br><span style="white-space:pre-wrap;font-size:13px;line-height:1.6">${r.diagnosis}</span></div>` : ''}
-      ${r.followup==='yes'&&r.followupDetail ? `<div><strong>🔔 跟進</strong><br><span style="white-space:pre-wrap;font-size:13px;line-height:1.6">${r.followupDetail}</span></div>` : ''}
+      ${r.diagnosis ? `<div><strong>📋 診斷</strong><br><span style="white-space:pre-wrap;font-size:13px;line-height:1.6">${familyLangFilter(r.diagnosis)}</span></div>` : ''}
+      ${r.followup==='yes'&&r.followupDetail ? `<div><strong>🔔 跟進</strong><br><span style="white-space:pre-wrap;font-size:13px;line-height:1.6">${familyLangFilter(r.followupDetail)}</span></div>` : ''}
       ${r.notes    ? `<div><strong>📄 文件</strong><br><span style="white-space:pre-wrap">${r.notes}</span></div>` : ''}
     </div>
     <div class="divider"></div>
@@ -1786,6 +1787,23 @@ function enterFamilyMode() {
 }
 
 let _elderLang = 'zh';
+
+// Family view language toggle (zh-en = both, zh = Chinese only)
+let _familyLang = 'zh-en';
+function familyToggleLang() {
+  _familyLang = _familyLang === 'zh-en' ? 'zh' : 'zh-en';
+  document.getElementById('family-lang-btn').textContent = _familyLang === 'zh-en' ? '中文' : '中+英';
+  renderUpcoming();
+  if (document.getElementById('page-all') && document.getElementById('page-all').classList.contains('active')) renderAll();
+  const journeyEl = document.getElementById('journey-content');
+  if (journeyEl) renderJourney();
+}
+function familyLangFilter(text) {
+  if (!text || _familyLang === 'zh-en') return text;
+  const marker = '\n\n中文：';
+  const idx = text.indexOf(marker);
+  return idx !== -1 ? text.substring(idx + marker.length).trim() : text;
+}
 
 function elderToggleLang() {
   _elderLang = _elderLang === 'zh' ? 'zh-en' : 'zh';
