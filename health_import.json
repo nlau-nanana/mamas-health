@@ -255,16 +255,16 @@
   {
     "id": "import_18",
     "date": "2026-04-27",
+    "time": "14:30",
     "location": "屯門醫院日間醫療中心",
     "specialist": "內科 (Internal Medicine)",
     "doctor": "內科團隊 Medical / Internal Medicine Team",
     "expense": "",
-    "diagnosis": "2:30pm: Outpatient follow-up with Internal Medicine (內科覆診) at TMH Day Medical Centre.\n\n中文：下午2:30：屯門醫院日間醫療中心內科門診覆診。",
+    "diagnosis": "2:30pm: Tuen Mun Hospital Day Medical Centre — Internal Medicine (內科) OPD. FINAL visit — discharged from Internal Medicine.\n\n1. DISCHARGE FROM INTERNAL MEDICINE: Doctor indicated no further need for internal medicine follow-up. All conditions to be followed by relevant specialists.\n\n2. PITUITARY ADENOMA: Doctor confirmed normal (non-urgent) finding. To be managed by specialists:\n   • 27/05/2026 → Endocrinology OPD\n   • 17/07/2026 → Neurosurgery OPD (to assess whether treatment is needed)\n\n3. PREVIOUS PITUITARY BLOOD TESTS: All results NEGATIVE (normal).\n\n4. UTERINE FIBROID: No cause for concern — patient is post-menopausal, minimal risk.\n\n5. FOOT/LEG PAIN: Orthopaedics only for knee replacement cases. Doctor agreed to refer for:\n   • X-Ray (ankle & knee) — referral letter issued → booked 06/05/2026 4:00pm\n   • Physiotherapy — referral letter issued → await appointment letter\n\n6. BLOOD PRESSURE: Continue GP (街症) follow-up as before.\n\n中文：下午2:30：屯門醫院日間醫療中心內科門診覆診。最後一次——內科「踢走」。\n\n1. 內科出院：醫生表示毋須再返內科覆診，所有問題由相關專科跟進。\n\n2. 腦下垂體腺瘤：醫生確認屬正常（非緊急）情況，交由專科跟進：\n   • 2026年5月27日 → 內分泌科覆診\n   • 2026年7月17日 → 腦外科覆診（評估是否需要治療）\n\n3. 之前腦下垂體抽血結果：全部陰性（正常）。\n\n4. 子宮肌瘤：毋須擔心——患者已停經，風險極低。\n\n5. 腳痛問題：骨科只處理需換膝關節個案。醫生發出兩張轉介信：\n   • X光（踝關節及膝關節）——已預約：2026年5月6日 下午4時\n   • 物理治療——轉介信已發出，等候預約通知\n\n6. 高血壓：繼續在街症（普通科門診）跟進，安排不變。",
     "followup": "yes",
-    "followupDetail": "Review pending investigations and ongoing medical management (hypertension, pituitary macroadenoma assessment, post-op recovery).\n\n中文：複查待收檢查結果及持續內科跟進（高血壓控制、腦下垂體大腺瘤評估、術後康復）。",
-    "notes": "Document Type: Internal Medicine OPD Follow-up\n內科門診覆診 | Ref: —",
-    "createdAt": "2026-04-14T00:00:00.000Z",
-    "time": "14:30"
+    "followupDetail": "1. ✅ No further Internal Medicine OPD required — discharged from 內科.\n2. ✅ Pituitary adenoma — follow-up by specialists:\n   → Endocrinology: 27/05/2026\n   → Neurosurgery: 17/07/2026 (assess if treatment needed)\n3. ✅ Uterine fibroid — no action needed (post-menopausal).\n4. ✅ X-Ray (ankle & knee) booked: 06/05/2026 4:00pm at TMH.\n5. ✅ Physiotherapy referral issued — await appointment letter.\n6. Blood pressure: continue GP (街症) follow-up as before.\n7. If further issues arise, attend GP (街症) for re-referral.\n\n中文：1. ✅ 毋須再返屯門醫院內科覆診——已由內科出院。\n2. ✅ 腦下垂體腺瘤——由專科跟進：\n   → 內分泌科：2026年5月27日\n   → 腦外科：2026年7月17日（評估是否需治療）\n3. ✅ 子宮肌瘤——毋須跟進（已停經）。\n4. ✅ X光（踝關節及膝關節）已預約：2026年5月6日 下午4時，屯門醫院。\n5. ✅ 物理治療轉介信已發出——等候預約通知。\n6. 血壓：繼續在街症（普通科門診）跟進。\n7. 如有其他問題，可回街症要求重新轉介。",
+    "notes": "Document Type: Internal Medicine OPD Follow-up (FINAL)\n內科門診覆診（最後一次）| Ref: —",
+    "createdAt": "2026-04-14T00:00:00.000Z"
   },
   {
     "id": "import_18a",
@@ -274,7 +274,7 @@
     "specialist": "胸肺外科 (Cardiothoracic Surgery)",
     "doctor": "Clinical Nurse / Nurse Specialist — Wound Check\n姑娘覆診傷口",
     "expense": "",
-    "diagnosis": "AM: Nurse wound check at Alliance Medical Centre (Dr. Lo's clinic) — follow-up after suture removal on 20/04/2026. Monitor healing, confirm gauze can be removed.\n\n中文：早上：安匯醫務中心（勞醫生診所）見姑娘覆診傷口——2026年4月20日拆線後跟進。監察傷口癒合，確認可拆除紗布。",
+    "diagnosis": "AM: Nurse wound check at Alliance Medical Centre (Dr. Lo's clinic) — follow-up after suture removal on 20/04/2026. Wound confirmed healing well.\n\n中文：早上：安匯醫務中心（勞醫生診所）見姑娘覆診傷口——2026年4月20日拆線後跟進。確認傷口癒合良好。",
     "followup": "yes",
     "followupDetail": "1. Confirm wound healing well — watch for infection, dehiscence.\n2. Internal Medicine OPD at TMH Day Medical Centre in the afternoon (2:30pm).\n\n中文：1. 確認傷口癒合良好——留意有無感染或裂開。\n2. 下午2:30屯門醫院日間醫療中心內科門診覆診。",
     "notes": "Document Type: Nurse Wound Check (AM) — Post-suture removal follow-up\n姑娘覆診傷口（早上）——拆線後跟進 | Ref: —",
