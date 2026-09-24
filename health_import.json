@@ -505,14 +505,14 @@
     "date": "2026-09-24",
     "time": "11:00",
     "status": "confirmed",
-    "location": "天水圍醫院骨科及創傷外科部門診\nTin Shui Wai Hospital — Orthopaedics & Traumatology OPD",
+    "location": "Tin Shui Wai Hospital — Orthopaedics & Traumatology OPD\n天水圍醫院骨科及創傷外科部門診",
     "specialist": "骨科 (Orthopaedics)",
-    "doctor": "骨科及創傷外科專科醫生（待確認）\nOrthopaedic Specialist (TBC)",
+    "doctor": "Orthopaedic Specialist\n骨科及創傷外科專科醫生",
     "expense": "",
-    "diagnosis": "11:00am first appointment. Public orthopaedics first assessment for bilateral OA knee (R>L).\nReferred by Dr. Wong Angel Ting Ting (M&G Endocrine Clinic, TMH, 27/05/2026).\nXR showed reduced joint space R>L. Patient keen to consider surgery.\n\n中文：上午11:00首診。公立骨科首次評估——雙膝骨性關節炎（右膝多於左膝）。\n由屯門醫院內科及老人科內分泌診所黃婷婷醫生轉介（2026/05/27）。X光顯示關節間隙收窄（右多於左）。有意考慮手術。",
+    "diagnosis": "Orthopaedics & Traumatology OPD — First Assessment. Bilateral OA knee (R>L).\nReferred by Dr. Wong Angel Ting Ting (M&G Endocrine Clinic, TMH, 27/05/2026). Ref: RLTMH26000601174.\nXR showed reduced joint space R>L. Patient keen to consider surgery.\n\nPHARMACIST ADVICE (Colchicine):\n• First-line gout medication. Stop immediately if diarrhoea occurs and consult doctor.\n\nDOCTOR ADVICE (Diclofenac SR):\n• 2nd-generation NSAID — primary side effect is gastric irritation only (Famotidine prescribed for protection).\n• If not tolerated, alternative is older-generation NSAID: easier on stomach but harder on kidneys.\n\nOA SUPPLEMENTS (glucosamine, chondroitin etc.):\n• Doctor confirmed: NO evidence of benefit for OA. Not recommended.\n\n中文：上午11:00首診。公立骨科首次評估——雙膝骨性關節炎（右膝多於左膝）。\nX光顯示關節間隙收窄（右多於左）。有意考慮手術。\n\n【藥劑師補充 — 秋水仙素】屬一線痛風藥物，如出現腹瀉須即時停藥並求醫。\n【醫生補充 — 服他靈SR】第二代NSAID，傷胃，配合法莫替丁保護胃黏膜。如不適用可轉換舊一代（較傷腎）。\n【關節退化補充品】醫生明確表示無醫學實證效果，不建議服用。",
     "followup": "yes",
-    "followupDetail": "1. First orthopaedics assessment — discuss knee degeneration severity and surgical options.\n2. Bring referral letter (Ref RLTMH26000601174) and all relevant X-ray/imaging reports.\n\n中文：1. 首次骨科評估——討論膝關節退化程度及手術方案。\n2. 攜帶轉介信（編號RLTMH26000601174）及所有相關X光及影像報告。",
-    "notes": "Document Type: Orthopaedics & Traumatology OPD — First Assessment\n骨科及創傷外科首診 — 膝關節退化評估 | Ref: RLTMH26000601174",
+    "followupDetail": "1. Dietitian referral — Nutritional Counselling (Obesity Management). Ref: TSHOR260286597Y. Appt: 14/12/2026 10:00am, Tin Shui Wai Hospital 4/F Dietetic Dept.\n2. Family Medicine Specialist Clinic follow-up — Dr. JOR, HON MAN (卓漢文). Appt: 24/05/2027 10:30am. OPD: FMOT-26-10754(U).\n3. Review blood test results (uric acid) at Family Medicine follow-up.\n\n中文：1. 轉介至營養治療門診（肥胖管理）。天水圍醫院4樓，14/12/2026上午10:00。編號TSHOR260286597Y。\n2. 家庭醫學覆診——卓漢文醫生。24/05/2027上午10:30。FMOT-26-10754(U)。\n3. 家庭醫學覆診時審閱驗血報告（尿酸）。",
+    "notes": "Document Type: Orthopaedics OPD — First Assessment (OA Knee)\n骨科首診 — 膝關節退化評估 | 11:00am | Ref: RLTMH26000601174 | Episode: FMOT2610754(U)",
     "createdAt": "2026-07-07T00:00:00.000Z"
   },
   {
@@ -717,5 +717,35 @@
     "followupDetail": "—",
     "notes": "Document Type: Endocrinology OPD Follow-up (內分泌科覆診)\n2:45pm registration | Blood test ~1–2 weeks prior at TMH blood-taking room",
     "createdAt": "2026-09-22T16:16:51.000Z"
+  },
+  {
+    "id": "import_52",
+    "date": "2026-12-14",
+    "time": "10:00",
+    "status": "scheduled",
+    "location": "Tin Shui Wai Hospital (Public) — Dietetic Department 4/F\n天水圍醫院4樓營養治療部（門診）\nTel: 3513 5361",
+    "specialist": "營養治療 (Dietetics)",
+    "doctor": "Dietitian 營養師",
+    "expense": "0",
+    "diagnosis": "Dietetic outpatient consultation for obesity management. Nutritional counselling — dietary assessment and advice.\n\n中文：天水圍醫院營養治療門診，跟進肥胖管理，提供飲食評估及建議。",
+    "followup": "yes",
+    "followupDetail": "Follow up as advised by dietitian.\n\n中文：按營養師建議跟進。",
+    "notes": "Document Type: Nutritional Counselling — Obesity Management (肥胖飲食指導)\nRef: TSHOR260286597Y | Episode: FMOT2610754(U)\nReferred by: Dr. JOR, HON MAN (24/09/2026)",
+    "createdAt": "2026-09-24T17:11:28.000Z"
+  },
+  {
+    "id": "import_53",
+    "date": "2027-05-24",
+    "time": "10:30",
+    "status": "scheduled",
+    "location": "Tin Shui Wai Hospital (Public) — Family Medicine Specialist Clinic 1/F\n天水圍醫院1樓家庭醫學專科診所 (SOPC)\nTel: 24014599",
+    "specialist": "家庭醫學 (Family Medicine)",
+    "doctor": "Dr. JOR, HON MAN (卓漢文)\nAssociate Consultant, Family Medicine",
+    "expense": "0",
+    "diagnosis": "Family Medicine Specialist Clinic follow-up. Review OA knee, gout, and obesity management. Review blood test results (uric acid from 24/09/2026).\n\n中文：家庭醫學覆診，跟進雙膝退化、痛風及體重管理。審閱2026年9月24日驗血報告（尿酸）。",
+    "followup": "yes",
+    "followupDetail": "Bring all previous reports. Confirm TSH Physiotherapy and Dietetics appointments were attended.\n\n中文：攜帶所有相關報告。確認物理治療及營養治療預約已完成。",
+    "notes": "Document Type: Family Medicine Specialist Clinic Follow-up\n家庭醫學覆診 | Priority 1 | OPD: FMOT-26-10754(U)",
+    "createdAt": "2026-09-24T17:11:28.000Z"
   }
 ]
